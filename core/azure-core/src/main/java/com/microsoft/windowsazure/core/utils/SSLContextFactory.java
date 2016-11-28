@@ -20,8 +20,7 @@ import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
@@ -91,8 +90,7 @@ public final class SSLContextFactory {
                     "The type of the keystore cannot be null");
         }
 
-        InputStream keyStoreInputStream = new FileInputStream(new File(
-                keyStorePath));
+        InputStream keyStoreInputStream = new ByteArrayInputStream(Base64.decode(keyStorePath));
 
         SSLContext sslContext = SSLContext.getInstance("TLS");
 
